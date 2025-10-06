@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Lead List{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-4 text-center">Leads</h1>
+
+  {% if leads %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Agent</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lead in leads %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ lead.first_name }}</td>
+          <td>{{ lead.last_name }}</td>
+          <td>{{ lead.email }}</td>
+          <td>{{ lead.phone|default:"—" }}</td>
+          <td>
+            {% if lead.agent %}
+              {{ lead.agent.user.username }}
+            {% else %}
+              <em>Unassigned</em>
+            {% endif %}
+          </td>
+          <td>{{ lead.created_at|date:"Y-m-d" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-info text-center">
+    No leads found.
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}
