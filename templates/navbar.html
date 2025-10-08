@@ -1,0 +1,46 @@
+<header class="text-gray-700 body-font bg-white shadow-sm">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+
+    <!-- Left: Logo -->
+    <a href="{% url 'dashboard' %}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <svg id="Layer_1" class="w-10 h-10" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="256" cy="256" r="256" fill="#a6f5cf"/>
+      </svg>
+      <span class="ml-3 text-xl font-semibold">DJANGO CRM</span>
+    </a>
+
+    <!-- Right: Navigation + Logout/Login -->
+    <div class="flex items-center space-x-6 ml-auto">
+
+      {% if request.user.is_authenticated %}
+        {% if request.user.is_organisor %}
+          <a href="{% url 'agents:agent-list' %}" class="hover:text-indigo-600 font-medium">Agents</a>
+        {% endif %}
+        <a href="{% url 'leads:lead-list' %}" class="hover:text-indigo-600 font-medium">Leads</a>
+
+        <!-- User info + Logout -->
+        <span class="text-sm text-gray-600">Hi, <strong>{{ request.user.username }}</strong></span>
+        <a href="{% url 'logout' %}" class="inline-flex items-center bg-red-500 text-white border-0 py-1 px-3 rounded hover:bg-red-600 transition">
+          Logout
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+
+      {% else %}
+        <!-- Show only when not logged in -->
+        <a href="{% url 'agents:agent-list' %}" class="hover:text-indigo-600 font-medium">Agents</a>
+        <a href="{% url 'leads:lead-list' %}" class="hover:text-indigo-600 font-medium">Leads</a>
+        <a href="{% url 'login' %}" class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 rounded hover:bg-gray-300">
+          Login
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</header>

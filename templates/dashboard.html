@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white min-h-screen flex items-center justify-center">
+  <div class="container mx-auto px-6 py-16">
+    <div class="text-center">
+      <h1 class="text-5xl font-bold mb-10 drop-shadow-lg">CRM Dashboard</h1>
+
+      <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-8">
+        <!-- Total Leads -->
+        <div class="bg-white text-gray-900 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 p-8">
+          <h2 class="text-4xl font-extrabold text-blue-600 mb-3">{{ total_lead_count }}</h2>
+          <p class="text-lg font-medium">Total Leads</p>
+        </div>
+
+        <!-- Leads added in last 30 days -->
+        <div class="bg-white text-gray-900 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 p-8">
+          <h2 class="text-4xl font-extrabold text-indigo-600 mb-3">{{ total_in_past30 }}</h2>
+          <p class="text-lg font-medium">Leads Added (Last 30 Days)</p>
+        </div>
+
+        <!-- Converted in last 30 days -->
+        <div class="bg-white text-gray-900 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 p-8">
+          <h2 class="text-4xl font-extrabold text-purple-600 mb-3">{{ converted_in_past30 }}</h2>
+          <p class="text-lg font-medium">Converted (Last 30 Days)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
